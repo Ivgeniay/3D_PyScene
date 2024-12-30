@@ -4,8 +4,7 @@ from random import randint
 from map import world_map
 from input import *
 from settings import *
-from  player import Player
-from raycasting import ray_casting
+from player import Player
 from drawing import Drawing
 
 pygame.init()
@@ -13,11 +12,12 @@ pygame.init()
 screen = pygame.display.set_mode(RESOLUTION)
 clock = pygame.time.Clock()
 pygame.display.set_caption(TITLE)
+screen_map = pygame.Surface((WIDTH // MAP_SCALE, HEIGHT // MAP_SCALE))
 
 input_sys = Input()
 player = Player()
 input_sys.subscribe(player.movement)
-drawing = Drawing(screen)
+drawing = Drawing(screen, screen_map)
 
 isQuit: bool = False
 def event_handler(_event: pygame.event):
@@ -56,6 +56,7 @@ while not isQuit:
     drawing.background()
     drawing.world(player.pos, player.angle)
     drawing.fps(clock=clock)
+    drawing.draw_minimap(player)
 
     pygame.display.flip()
     clock.tick(FPS)
