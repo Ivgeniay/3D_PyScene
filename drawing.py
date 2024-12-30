@@ -9,13 +9,17 @@ class Drawing:
         self.screen = screen
         self.screen_map = screen_map
         self.font = pygame.font.SysFont('Arial', 36, bold=True)
+        self.textures = {
+            '1' : pygame.image.load("img/1.png").convert(),
+            '2' : pygame.image.load("img/2.png").convert()
+            }
 
     def background(self):
         pygame.draw.rect(self.screen, SKYBLUE, (0, 0, WIDTH, HALF_HEIGHT))
         pygame.draw.rect(self.screen, DARKGRAY, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
 
     def world(self, pl_pos: (int, int), pl_angle: float):
-        ray_casting(self.screen, pl_pos, pl_angle)
+        ray_casting(self.screen, pl_pos, pl_angle, self.textures)
 
     def fps(self, clock):
         display_fps = str(int(clock.get_fps()))
