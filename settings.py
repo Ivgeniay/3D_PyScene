@@ -9,11 +9,12 @@ HALF_HEIGHT = HEIGHT / 2
 TITLE = "Kek game"
 FPS = 60
 TILE = 100
+FPS_POS = (WIDTH - 65, 5)
 
 # ray casting setting
 FOV = math.pi / 3
 HALF_FOV = FOV / 2
-NUM_RAYS = 40
+NUM_RAYS = int(120 * 1)
 MAX_DEPTH = 800
 DELTA_ANGLE = FOV / NUM_RAYS
 DIST = NUM_RAYS / (2 * math.tan(HALF_FOV))
@@ -34,4 +35,5 @@ GREEN = (0, 220, 0)
 BLUE = (0, 0, 220)
 DARKGRAY = (40, 40, 40)
 PURPLE = (120, 0, 120)
+SKYBLUE = (0, 186, 255)
 COLORS = [WHITE, BLACK, RED, GREEN, BLUE, DARKGRAY, PURPLE]

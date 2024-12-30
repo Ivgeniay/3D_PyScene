@@ -6,6 +6,7 @@ from input import *
 from settings import *
 from  player import Player
 from raycasting import ray_casting
+from drawing import Drawing
 
 pygame.init()
 
@@ -16,7 +17,7 @@ pygame.display.set_caption(TITLE)
 input_sys = Input()
 player = Player()
 input_sys.subscribe(player.movement)
-
+drawing = Drawing(screen)
 
 isQuit: bool = False
 def event_handler(_event: pygame.event):
@@ -52,20 +53,13 @@ while not isQuit:
 
     screen.fill(BLACK)
 
-    pygame.draw.rect(screen, BLUE, (0, 0, WIDTH, HALF_HEIGHT))
-    pygame.draw.rect(screen, DARKGRAY, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
-
-    ray_casting(screen, player.pos, player.angle)
-
-    #pygame.draw.circle(screen, GREEN, (int(player.pos[0]), int(player.pos[1])),12)
-    #pygame.draw.line(screen, GREEN, (int(player.pos[0]), int(player.pos[1])), (player.x + WIDTH * math.cos(player.angle),
-    #                                             player.y + WIDTH * math.sin(player.angle)))
-
-    #for x, y in world_map: pygame.draw.rect(screen, DARKGRAY, (x, y, TILE, TILE), 2)
+    drawing.background()
+    drawing.world(player.pos, player.angle)
+    drawing.fps(clock=clock)
 
     pygame.display.flip()
     clock.tick(FPS)
-    #pygame.display.update()
+    #clock.tick()
 
 quit_handler()
 
